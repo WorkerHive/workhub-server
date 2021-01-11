@@ -39,7 +39,7 @@ let hiveGraph = new Graph(`
     ${typeDefs}
 `, resolvers, connector, true)
 
-connector.stores.initializeAppStore({url: 'mongodb://localhost', dbName: 'test-db'})
+connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'test-db'})
 
 app.use(bodyParser.json())
 app.use(cors())
