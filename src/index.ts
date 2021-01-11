@@ -2,6 +2,7 @@ import Graph, { LoggerConnector } from '@workerhive/graph'
 import { typeDefs } from './types';
 import express from 'express';
 import bodyParser from 'body-parser'
+import cors from 'cors';
 
 import { FlowConnector } from '@workerhive/flow-provider'
 
@@ -10,6 +11,8 @@ const app = express();
 let logger = new LoggerConnector();
 
 let connector = new FlowConnector({}, {})
+
+let { types, resolvers } = connector.getConfig();
 
 let hiveGraph = new Graph(`
 
@@ -24,13 +27,22 @@ let hiveGraph = new Graph(`
     type Subscription {
         empty: String
     }
+    
+    type Workflow @crud @configurable{
+        id: ID
+        name: String @input
+        nodes: [JSON] @input
+        links: [JSON] @input
+    }
 
+    ${types}
     ${typeDefs}
-`, connector, true)
+`, resolvers, connector, true)
 
 connector.stores.initializeAppStore({url: 'mongodb://localhost', dbName: 'test-db'})
 
 app.use(bodyParser.json())
+app.use(cors())
 
 hiveGraph.addTransport((conf:any) => {
 
@@ -39,7 +51,7 @@ hiveGraph.addTransport((conf:any) => {
         let variables = req.body.variables || {};
         if(variables && typeof(variables) !== 'object') variables = JSON.parse(variables)
 
-        hiveGraph.executeRequest(query, variables).then((r) => res.send(r))
+        hiveGraph.executeRequest(query, variables, req.body.operationName).then((r) => res.send(r))
     })
 
     app.get('/graphql', (req, res) => {
