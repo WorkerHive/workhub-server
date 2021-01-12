@@ -67,7 +67,7 @@ export const typeDef = `
     cid: String
   }
 
-  type File @upload{
+  type File @upload @configurable{
     id: ID
     cid: String
     filename: String

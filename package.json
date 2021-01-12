@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@workerhive/flow-provider": "^1.2.11",
-    "@workerhive/graph": "^1.0.14",
+    "@workerhive/graph": "^1.0.17",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"

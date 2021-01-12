@@ -4,7 +4,7 @@ export const typeDef = `
     "A member of your WorkHub Team"
     id: ID
     username: String @input
-    password: String 
+    password: Hash @input 
     status: String @input
     admin: Boolean @input
     name: String @input
