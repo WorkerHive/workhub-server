@@ -1,6 +1,10 @@
 import lodash from 'lodash';
 
 import { 
+  typeDef as Layout
+} from './layout'
+
+import { 
   typeDef as Project,
   resolvers as projectResolvers
 } from './project';
@@ -45,4 +49,4 @@ const { merge } = lodash;
 
 
 export const resolvers = merge(projectResolvers, fileResolvers, userResolvers, integrationResolvers, calendarResolvers)
-export const typeDefs = [Contacts, Knowledge, Project, Team, Equipment, File, User, Integrations, Calendar].join('\n')
+export const typeDefs = [Layout, Contacts, Knowledge, Project, Team, Equipment, File, User, Integrations, Calendar].join('\n')

@@ -10,7 +10,6 @@ export const typeDef = `
     description: String @input
     content: String @input
     parent: String @input
-    children: [Knowledge]
     links: [String]
   }
   `

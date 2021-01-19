@@ -1,5 +1,5 @@
 
-
+//TODO add files to project
 export const typeDef = `
 
   extend type Mutation {
@@ -15,7 +15,6 @@ export const typeDef = `
     description: String @input
     startDate: Int @input
     endDate: Int @input
-    files: [File]
     status: String @input
   }
   `

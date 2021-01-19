@@ -117,7 +117,21 @@
     "@types/mime" "*"
     "@types/node" "*"
 
-"@workerhive/flow-provider@^1.2.11", "@workerhive/flow-provider@^1.2.9":
+"@workerhive/flow-provider@^1.2.15":
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/@workerhive/flow-provider/-/flow-provider-1.2.15.tgz#1af457cfa0cadbf4068536965a058d35518b86e1"
+  integrity sha512-tjo5fRdm5ZADrEejxNHlbEn9/SOq1jgT0g4bhfLcxebXHSHkAi7tGJ0X9kFaZg9dZoFlVd0gzNOt9Qq/UszvNQ==
+  dependencies:
+    "@graphql-tools/merge" "^6.2.6"
+    "@graphql-tools/schema" "^7.1.2"
+    "@types/mongodb" "^3.6.3"
+    camel-case "^4.1.2"
+    file-extension "^4.0.5"
+    graphql-compose "^7.23.0"
+    graphql-type-json "^0.3.2"
+    lodash "^4.17.20"
+
+"@workerhive/flow-provider@^1.2.9":
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/@workerhive/flow-provider/-/flow-provider-1.2.11.tgz#a4d7bfd00a9d816cf6ff8fe29ee1b470219ecfd5"
   integrity sha512-3xKGUg20VJTeX80y4gZIE5Zf3PdR58JKu6fv1BmPPD4J2nJP2Ois1F2XGRS+AChfdWfpH13HOGKI1jibsDc3BA==
@@ -131,10 +145,10 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.20"
 
-"@workerhive/graph@^1.0.17":
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.17.tgz#2582471d7f86184c11b23564d2e8040fb4066a45"
-  integrity sha512-AN/j6Kd3fR+LA4xUz+pZMi6COIAQ/lQdwL4QMc7hj3G40BwSI9KTzWPBTJO84axmCxbd4UKmuTCqzRxC/Svkzg==
+"@workerhive/graph@^1.0.18":
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.18.tgz#861c0436ed3cb48ad9875fcd68ae96f7c131f9fb"
+  integrity sha512-KjpaKWZTcZh6v3vDginXBJThUPHQXsWB93T+iPswK/8TsNHjxRFRQ9ALl7I/47zQjN+O8oL2/p3Cm1Rd1YKUuw==
   dependencies:
     "@graphql-tools/schema" "^7.1.2"
     "@workerhive/flow-provider" "^1.2.9"
