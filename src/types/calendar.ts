@@ -35,6 +35,14 @@ type CalendarBooking{
     items: BookingItems
 }
 
+type Schedule @crud @configurable{
+  id: ID
+  allDay: Boolean @input
+  start: Date @input
+  end: Date @input
+  title: String @input
+}
+
 `
 
 export const resolvers = {
