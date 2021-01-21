@@ -4,7 +4,16 @@ import express from 'express';
 import bodyParser from 'body-parser'
 import cors from 'cors';
 
+import passport from 'passport';
+
+import LocalStrategy from 'passport-local'
+
 import { FlowConnector } from '@workerhive/flow-provider'
+
+
+passport.use(new LocalStrategy((username, password, done) => {
+    console.log(username, password)
+}))
 
 const app = express();
 
@@ -40,6 +49,8 @@ let hiveGraph = new Graph(`
 `, resolvers, connector, true)
 
 connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'test-db'})
+
+app.get('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login-failed'}))
 
 app.use(bodyParser.json())
 app.use(cors())
