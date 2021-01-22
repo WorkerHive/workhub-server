@@ -3,12 +3,32 @@ import { typeDefs } from './types';
 import express from 'express';
 import bodyParser from 'body-parser'
 import cors from 'cors';
+import crypto from 'crypto';
+
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 
 import { FlowConnector } from '@workerhive/flow-provider'
 
-const app = express();
+const opts = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: 'secret',
+    //issuer: process.env.WORKHUB_DOMAIN ? process.env.WORKHUB_DOMAIN : 'workhub.services',
+   // audience: process.env.WORKHUB_DOMAIN ? process.env.WORKHUB_DOMAIN : 'workhub.services'
+}
 
-let logger = new LoggerConnector();
+passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
+    let user = await connector.read("TeamMember", {id: jwt_payload.sub})
+    if(user){
+        done(null, user)
+    }else{
+        done(null, false)
+    }
+}))
+  
+const app = express();
 
 let connector = new FlowConnector({}, {})
 
@@ -41,17 +61,35 @@ let hiveGraph = new Graph(`
 
 connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'test-db'})
 
+
 app.use(bodyParser.json())
 app.use(cors())
 
-hiveGraph.addTransport((conf:any) => {
+app.post('/login', async (req, res) => {
+    let strategy = req.body.strategy;
 
-    app.post('/graphql', (req, res) => {
+    let username = req.body.username;
+    let password = crypto.createHash('sha256').update(req.body.password).digest('hex');
+    let user : any = await connector.read("TeamMember", {username: username, password: password})
+
+    if(user.id){
+        res.send({token: jwt.sign({
+            sub: user.id,
+            name: user.name,
+            email: user.email
+        }, 'secret')})
+    }else{
+        res.status(404).send({error: "No user found"})
+    }
+})
+
+hiveGraph.addTransport((conf:any) => {
+    
+    app.post('/graphql', passport.authenticate('jwt', {session: false}), (req, res) => {
         let query = req.body.query;
         let variables = req.body.variables || {};
         if(variables && typeof(variables) !== 'object') variables = JSON.parse(variables)
-
-        hiveGraph.executeRequest(query, variables, req.body.operationName).then((r) => res.send(r))
+        hiveGraph.executeRequest(query, variables, req.body.operationName, {user: req['user']}).then((r) => res.send(r))
     })
 
     app.get('/graphql', (req, res) => {
