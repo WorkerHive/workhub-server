@@ -59,7 +59,7 @@ let hiveGraph = new Graph(`
     ${typeDefs}
 `, resolvers, connector, true)
 
-connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'test-db'})
+connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'workhub'})
 
 
 app.use(bodyParser.json())
