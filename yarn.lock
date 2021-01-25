@@ -569,10 +569,10 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.20"
 
-"@workerhive/graph@^1.0.19":
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.19.tgz#ab007534e56810dba84c55c3fa38b0a0cae8c907"
-  integrity sha512-ZAIVFsDpqkF+k8JuP7vQeEZQZVRNYLqaaPblJE7TMlB5b9g8nKU4gFpQQHRyFRGoMx48cFtvpihF+24n4QZkUw==
+"@workerhive/graph@^1.0.24":
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.24.tgz#dc33ec87b3f7bc01997bbcc7c515f4f786abc0df"
+  integrity sha512-hlDa0HNIebTwyS2namWSy0HfijKqDN79T+UORdyvjO0hKm6UI/BZw6E0g51808aRHjGdDOom0VK8udy1kmnTFg==
   dependencies:
     "@graphql-tools/schema" "^7.1.2"
     "@workerhive/flow-provider" "^1.2.9"
