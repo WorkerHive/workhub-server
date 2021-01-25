@@ -1,0 +1,90 @@
+{
+  "Addresses": {
+    "Swarm": [
+      "/dns4/thetechcompany.workhub.services/tcp/443/wss/p2p-webrtc-star"
+    ],
+    "Announce": [],
+    "API": "/ip4/127.0.0.1/tcp/5002",
+    "Gateway": "/ip4/127.0.0.1/tcp/9090",
+    "Delegates": [
+      "/dns4/node0.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node1.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node2.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node3.delegate.ipfs.io/tcp/443/https"
+    ]
+  },
+  "Discovery": {
+    "MDNS": {
+      "Enabled": true,
+      "Interval": 10
+    },
+    "webRTCStar": {
+      "Enabled": true
+    }
+  },
+  "Bootstrap": [
+    "/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmZa1sAxajnQjVM8WjWXoMbmPd7NsWhfKsPkErzpm9wGkp",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
+    "/dns4/node0.preload.ipfs.io/tcp/443/wss/p2p/QmZMxNdpMkewiVZLMRxaNxUeZpDUb34pWjZ1kZvsd16Zic",
+    "/dns4/node1.preload.ipfs.io/tcp/443/wss/p2p/Qmbut9Ywz9YEDrz8ySBSgWyJk41Uvm2QJPhwDJzJyGFsD6",
+    "/dns4/node2.preload.ipfs.io/tcp/443/wss/p2p/QmV7gnbW5VTcJ3oyM2Xk1rdFBJ3kTkvxc87UFGsun29STS",
+    "/dns4/node3.preload.ipfs.io/tcp/443/wss/p2p/QmY7JB6MQXhxHvq7dBDh4HpbH29v4yE9JRadAVpndvzySN"
+  ],
+  "Pubsub": {
+    "Router": "gossipsub",
+    "Enabled": true
+  },
+  "Swarm": {
+    "ConnMgr": {
+      "LowWater": 200,
+      "HighWater": 500
+    }
+  },
+  "Routing": {
+    "Type": "none"
+  },
+  "Identity": {
+    "PeerID": "QmVpEj695w8ZhxZxHf7Ws86z4aQTVMBn3ThQ87XhxckFUh",
+    "PrivKey": "CAASqAkwggSkAgEAAoIBAQDDqNN4KBX0Mq4BHCeGViELTM3V6xbcOFvfXZsadjJxviDe6L4xDlxbbaaKWCMVwgHLygWtWKwMM7HM3aroPuaX3wYfTfxitByvMz1ZLeBeTBipnIcF35khA+RxnWXzUZHKEUJrazdpks4Le7+SfTsXX0YJRtuFJArEWR6XGLxc4zVsZ8xO38w+E8gigoXDtz0kDMz+0aymjRmLoRleJfWHcfc3bpr8boVEtd5zvqbShzhIf60vAlWf4QaHjyTThO9oDLHYWN5DXh/jVXYXiDre43cG/qC9/kGqEzEddZ/e1rqNBfxsDO9iC6R46p+RsKTZIacl/3dpXrwKA1daL3NzAgMBAAECggEAE9FPygXVY2yWr0oYvsSOiER5PMeZAyk6NP+YLC/4oAiv76QHT5SyyhfrHGwc8aE66VdHB+3JT1sVETkKjIeCd7OBPT5658xyc1RvTE8XQLXYcaWHD5M8QVnRk6hroR+L8rmYzqSHckwKTqN0HfRNPerKfzoMFgo2hPi53ngE7Ctx8AwQKwPF8m8UfFdXykG0uCOBzqkEbRfEIiz5s/emqxS1yFtp/W7VVBOb+USNeeV9jTi5JJ/qeUjcsZkT0epUkaI80YTrqBsZ/l8YbwYhSFFXPZGiPwl7WmVsC4emfX8Ou84ckpZXzOvv6qKttMGMvmJAz/983ALbl8Oz46k2cQKBgQDjQPWCDQAhiBNhCAJR7oz8SeLCdWFmxq8U7UrRea5q0JfL1IumhsS0OshT0dxMSMD1vA2NzpZJ8qlAGksS5KKemzmW7j5PnHVCLH/Y0LHntfoT8BYfWGMulukw18voDkB4EP5u3toq/9Nvg8tLZE2kzY1SIhMOV+EA6jPMfnC1zwKBgQDcaMQeU+y9/GIX1aD6dlACnOm3Jq2guzjosvcuolAaYeCJwRhkzsu5of7RLIvwAIUa4B+AH/ns7pLyEMs6KFdiAHjEOlSrTi3RZLluJQgj3F9+IKuUHTCKZvnuV0K/GRuwSWYGUBMg0NYj46rsiL1DdfuQtJ7cKwhaEZGKuok1HQKBgQCgeNBkg1WiV/qHPCaXQIJh7LKpakXbU1Vyy5VXkjstxhpKns32S5g/RHsNZVXQsFdBrwdLKaRKl4YYc/irYLPMmAP0pktt4CeVEOM+cTAPVRtAVPrqK3nt/jawfNHKDbZMkoN4OvmH/5qIVmKJ3ExPoa63XsRiDoAeK0Nklax1VQKBgQCya6y20EFI2lGd8bVKixPhyZv4Qzsybdx3osgt2/70HF9jpAhXMoAAWX6pXWI6enFFfECDu17ZyZbylV2uSpHSJ4ebcYywz6yPYPYqj5ezT+WNeGzsjWSJ5SpVIhZKE80yO3h3i8KwQd3XV6k5qMdtIMjwLwaaO8ua/bXPk4kWkQKBgHG6xPOQHEZcbNpUCHrM4dDe0EfJPEbcnB0Sx4tdDP75XHK/vJ8isUIMbysDwgrqlduVxENp4XEZVAxH9vqZ7ngTZoYY9yRPabGuOCkfhjYwdRnVMCMuWQaXgDcrFOaKVw/8V2RN8krUnwlDXzU4qK7G2hWmrRxD5GHKIUQzEeCv"
+  },
+  "datastore": {
+    "Spec": {
+      "type": "mount",
+      "mounts": [
+        {
+          "mountpoint": "/blocks",
+          "type": "measure",
+          "prefix": "flatfs.datastore",
+          "child": {
+            "type": "flatfs",
+            "path": "blocks",
+            "sync": true,
+            "shardFunc": "/repo/flatfs/shard/v1/next-to-last/2"
+          }
+        },
+        {
+          "mountpoint": "/",
+          "type": "measure",
+          "prefix": "leveldb.datastore",
+          "child": {
+            "type": "levelds",
+            "path": "datastore",
+            "compression": "none"
+          }
+        }
+      ]
+    }
+  },
+  "Keychain": {
+    "dek": {
+      "keyLength": 64,
+      "iterationCount": 10000,
+      "salt": "GxcZKTrTk/v/LKc7EeKZ70qk",
+      "hash": "sha2-512"
+    }
+  }
+}

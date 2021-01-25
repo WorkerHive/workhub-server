@@ -4,11 +4,13 @@ import express from 'express';
 import bodyParser from 'body-parser'
 import cors from 'cors';
 import crypto from 'crypto';
-
+import { merge } from 'lodash'
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
+
+import { WorkhubFS } from "@workerhive/ipfs"
 
 import { FlowConnector } from '@workerhive/flow-provider'
 
@@ -30,14 +32,29 @@ passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
   
 const app = express();
 
+const fsLayer = new WorkhubFS({
+    Swarm: [
+        `/dns4/${process.env.WORKHUB_DOMAIN ? process.env.WORKHUB_DOMAIN : 'thetechcompany.workhub.services'}/tcp/443/wss/p2p-webrtc-star`
+    ]
+})
+
 let connector = new FlowConnector({}, {})
 
 let { types, resolvers } = connector.getConfig();
+
+const workhubResolvers = merge({
+    Query: {
+        swarmKey: (parent) => { 
+            return fsLayer.swarmKey
+        }
+    }
+}, resolvers)
 
 let hiveGraph = new Graph(`
 
     type Query {
         empty: String
+        swarmKey: String
     }
 
     type Mutation{
@@ -57,10 +74,9 @@ let hiveGraph = new Graph(`
 
     ${types}
     ${typeDefs}
-`, resolvers, connector, true)
+`, workhubResolvers, connector, true)
 
 connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'workhub'})
-
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -85,7 +101,7 @@ app.post('/login', async (req, res) => {
 
 hiveGraph.addTransport((conf:any) => {
     
-    app.post('/graphql', passport.authenticate('jwt', {session: false}), (req, res) => {
+    app.post('/graphql',/* passport.authenticate('jwt', {session: false}),*/ (req, res) => {
         let query = req.body.query;
         let variables = req.body.variables || {};
         if(variables && typeof(variables) !== 'object') variables = JSON.parse(variables)
