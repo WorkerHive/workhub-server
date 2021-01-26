@@ -541,10 +541,10 @@
     "@types/mime" "*"
     "@types/node" "*"
 
-"@workerhive/flow-provider@^1.2.15":
-  version "1.2.15"
-  resolved "https://registry.yarnpkg.com/@workerhive/flow-provider/-/flow-provider-1.2.15.tgz#1af457cfa0cadbf4068536965a058d35518b86e1"
-  integrity sha512-tjo5fRdm5ZADrEejxNHlbEn9/SOq1jgT0g4bhfLcxebXHSHkAi7tGJ0X9kFaZg9dZoFlVd0gzNOt9Qq/UszvNQ==
+"@workerhive/flow-provider@^1.2.16":
+  version "1.2.16"
+  resolved "https://registry.yarnpkg.com/@workerhive/flow-provider/-/flow-provider-1.2.16.tgz#f79239c0291591d50caf9c914dfa119ed7c7b441"
+  integrity sha512-q9a1CHtVPlOJNcWVfOkt1v+6CDeGty5in3CsbqzDdikZnIJSZqdRfNzKvwB9r3wCekTwlSRa44ZvGeoBXXP9Fw==
   dependencies:
     "@graphql-tools/merge" "^6.2.6"
     "@graphql-tools/schema" "^7.1.2"
@@ -569,10 +569,10 @@
     graphql-type-json "^0.3.2"
     lodash "^4.17.20"
 
-"@workerhive/graph@^1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.24.tgz#dc33ec87b3f7bc01997bbcc7c515f4f786abc0df"
-  integrity sha512-hlDa0HNIebTwyS2namWSy0HfijKqDN79T+UORdyvjO0hKm6UI/BZw6E0g51808aRHjGdDOom0VK8udy1kmnTFg==
+"@workerhive/graph@^1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@workerhive/graph/-/graph-1.0.25.tgz#2236748119c9e4079d7886258f3891dd9803f533"
+  integrity sha512-Ogo+3mxXe98gcN9Pk73kfBELtSZ6b7ErnZTFVGPiBdmK1xvXd8V7/8faVbnU3cmbV7lxYj3I/4drNLpqiDKhQw==
   dependencies:
     "@graphql-tools/schema" "^7.1.2"
     "@workerhive/flow-provider" "^1.2.9"
