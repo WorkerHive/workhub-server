@@ -7,6 +7,7 @@ import crypto from 'crypto';
 import { merge } from 'lodash'
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import multer from 'multer';
 
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 
@@ -52,18 +53,14 @@ const workhubResolvers = merge({
 
 let hiveGraph = new Graph(`
 
-    type Query {
-        empty: String
+    extend type Query {
         swarmKey: String
     }
 
-    type Mutation{
+    extend type Mutation{
         empty: String
     }
 
-    type Subscription {
-        empty: String
-    }
     
     type Workflow @crud @configurable{
         id: ID
@@ -76,7 +73,19 @@ let hiveGraph = new Graph(`
     ${typeDefs}
 `, workhubResolvers, connector, true)
 
-connector.stores.initializeAppStore({url: process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost', dbName: process.env.WORKHUB_DOMAIN ? 'workhub' : 'workhub'})
+connector.stores.initializeAppStore({
+    url: (process.env.WORKHUB_DOMAIN ? 'mongodb://mongo' : 'mongodb://localhost'),
+    dbName: (process.env.WORKHUB_DOMAIN ? 'workhub' : 'workhub')
+})
+
+const a = (async () => {
+    let stores = await connector.readAll('IntegrationStore')
+    console.log("Read stores", stores)
+    connector.stores.setupDefaultStores(stores)
+})
+setTimeout(() => {
+    a();
+}, 500)
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -101,11 +110,17 @@ app.post('/login', async (req, res) => {
 
 hiveGraph.addTransport((conf:any) => {
     
-    app.post('/graphql',/* passport.authenticate('jwt', {session: false}),*/ (req, res) => {
+    app.post('/graphql',/* passport.authenticate('jwt', {session: false}),*/ multer().single('file'), (req : any, res) => {
         let query = req.body.query;
         let variables = req.body.variables || {};
         if(variables && typeof(variables) !== 'object') variables = JSON.parse(variables)
-        hiveGraph.executeRequest(query, variables, req.body.operationName, {user: req['user']}).then((r) => res.send(r))
+        if(req.file) variables.file = req.file; 
+        hiveGraph.executeRequest(
+            query,
+            variables,
+            req.body.operationName,
+            {user: req['user'], fs: fsLayer}
+        ).then((r) => res.send(r))
     })
 
     app.get('/graphql', (req, res) => {

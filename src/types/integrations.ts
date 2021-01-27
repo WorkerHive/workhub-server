@@ -4,7 +4,6 @@ import {v4 as uuidv4} from 'uuid';
 export const typeDef = `
 extend type Query {
   connectionLayout(storeId: ID): [StoreBucket]
-  bucketLayout(storeId: ID, bucketId: ID): [StoreBit]
   adminTypes: Types
   typePermissions: [FlowInfo]
 }
@@ -115,15 +114,7 @@ export const resolvers =  {
             })
         }
     },
-    connectionLayout: async (parent, {storeId}, context) => {
-        let store = context.connections.flow.getStore(storeId)
-        return await store.db.layout()
-    },
-    bucketLayout: async (parent, {storeId, bucketId}, context) => {
-        let store = context.connections.flow.getStore(storeId)
-        return await store.db.bucketLayout(bucketId)
-    }
-  }
+   }
 }
 
 

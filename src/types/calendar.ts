@@ -40,7 +40,8 @@ type Schedule @crud @configurable{
   allDay: Boolean @input
   start: Date @input
   end: Date @input
-  title: String @input
+  people: [TeamMember] @input
+  resources: [Equipment] @input
 }
 
 `
